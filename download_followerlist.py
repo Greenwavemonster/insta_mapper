@@ -2,20 +2,21 @@ import instaloader
 from datetime import date
 
 USER = "foo"  # User acc which can acces instagram...
-acc_target = "foo_2"
+acc_target = "foo2"
 
 # Get instance
 L = instaloader.Instaloader()
 L.load_session_from_file(USER)  # Load the created Session // Create a session -> "instaloader -l USERNAME"
 tarAcc = instaloader.Profile.from_username(L.context, acc_target)  # Load Target profile
 
-# Print list of followers into text file
+# Print list of followees
 follow_list = []
-fileN = "Followers-" + acc_target + "-" + str(date.today())
+fileN = "Followees-" + acc_target + "-" + str(date.today())
 file = open(fileN + ".txt", "a+")  # Name of the output File
-for followee in tarAcc.get_followees():
-    username = followee.username
+for follower in tarAcc.get_followers():
+    username = follower.username
     file.write(username + "\n")
     print(username)
 
 file.close()
+
