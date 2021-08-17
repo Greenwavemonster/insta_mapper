@@ -1,8 +1,8 @@
 import instaloader
 from datetime import date
 
-USER = "gibb.kleinanzeigen"  # User acc which can acces instagram...
-acc_target = "m_aexu"
+USER = "foo"  # User acc which can acces instagram...
+acc_target = "foo_1"
 
 # Get instance
 L = instaloader.Instaloader()
