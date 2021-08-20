@@ -16,3 +16,6 @@ Plan:
   * figure out how to create a session trough the script
   * Refine and check everything
 
+I just had the crazy idea to combine it to create a chart wich will visually show who follows who.
+(Kind of like https://github.com/KiranGershenfeld/VisualizingTwitchCommunities did)
+This will take a wile since im pretty busy rn...
