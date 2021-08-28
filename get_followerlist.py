@@ -1,7 +1,7 @@
 import instaloader
 from datetime import date
 
-USER = "foo"  # User acc which can acces instagram...
+USER = "foo"  # User acc which can access instagram...
 acc_target = "foo2"
 
 # Get instance
