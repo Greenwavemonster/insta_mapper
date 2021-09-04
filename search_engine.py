@@ -18,6 +18,7 @@ def menu():
     usr_in = int(input())
 
     def getFollowers():
+        print("Creating list of followers...")
         loadTarAcc = instaloader.Profile.from_username(s.context, tarAcc)
         fileN = "Followers-" + tarAcc + "-" + str(date.today())
         file = open(fileN + ".txt", "a+")  # Name of the output File
@@ -32,6 +33,7 @@ def menu():
         menu()
 
     def getFollowees():
+        print("Creating list of followees...")
         loadTarAcc = instaloader.Profile.from_username(s.context, tarAcc)
         fileN = "Followers-" + tarAcc + "-" + str(date.today())
         file = open(fileN + ".txt", "a+")  # Name of the output File
@@ -47,18 +49,25 @@ def menu():
 
     def downloadSubmenu():
         print("Please enter path (to file with account names): ")
-        fileName = str(input())
-        pathValid(fileName)
+        fileName = input()
+        if os.path.exists(fileName):
+            pass
+        else:
+            while True:
+                print("Path or Filename not found...Try again: ")
+                fileName = input()
+                if os.path.exists(fileName):
+                    break
         print("Download will start any moment. This can take a lot of time...")
         print("""
         IMPORTANT: 
         1. Please respect the creators privacy. Especially when downloading content from private accounts.
            I do not take any responsibility for anything.
-           
+
         2. If you download a lost of content, the API might start to give timeouts.
-        
+
         3. Do not use Instagram while fetching content.         
-        
+
         """)
         u = input("Press enter to continue: ")
         time.sleep(2)
@@ -77,23 +86,13 @@ def menu():
     dict = {
         1: getFollowers,  # DONE
         2: getFollowees,  # DONE
-        3: downloadSubmenu, # DONE
+        3: downloadSubmenu,  # DONE
         4: instaMapper,
         99: endScript,
 
     }
     dict.get(usr_in, default)()
 
-
-def pathValid(fileName):
-    if os.path.exists(fileName):
-        pass
-    else:
-        while True:
-            print("Path or Filename not found...Try again: ")
-            fileName = str(input())
-            if os.path.exists(fileName):
-                return fileName
 
 
 def readFile(fileName):
@@ -127,7 +126,6 @@ def loadSession():
     global s
     print("Please enter your account name (to access Instagram): ")
     u = input()
-    u = "gibb.kleinanzeigen"  # todo Delete when done... its just so i don't have to type it every time
     s = instaloader.Instaloader()
     s.load_session_from_file(u)  # Load the created Session
 
@@ -170,7 +168,7 @@ Please create a valid session which the script can use to access instagram.
 Execute following command on the cmd to create a session:
 
 'instaloader -l USERNAME'
-    
+
 and Login (2FA should work but can cause problems...)
 
 *If you have already done that once, just continue.
