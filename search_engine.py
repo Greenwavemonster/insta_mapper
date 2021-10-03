@@ -75,6 +75,8 @@ def menu():
 
     def instaMapper():
         print(4)
+        firstRun()
+        secondRun()
 
     def default():
         print("Incorrect option...")
@@ -94,9 +96,9 @@ def menu():
     dict.get(usr_in, default)()
 
 def firstRun():  # This is to fetch data from the tarAcc
-    os.mkdir(r'C:\Users\XXXXX\PycharmProjects\instaread\csv-files')
-    cPaths = r'C:\Users\XXXXX\PycharmProjects\instaread\csv-files'
-    count = 0
+    t1 = time.time()
+    os.mkdir(r'C:\Users\XXXX\PycharmProjects\instaread2.0\csv-files\followers-files')
+    cPaths = r'C:\Users\XXXX\PycharmProjects\instaread2.0\csv-files\followers-files'
 
     acc = tarAcc + '-' + "followers" + '.csv'
     tmpPath = os.path.join(cPaths, acc)
@@ -110,6 +112,8 @@ def firstRun():  # This is to fetch data from the tarAcc
         writer.writerow(h)
 
         i = 0
+        count = 0
+        pause = 0
         for f in users.get_followers():
             uName = str(f.username)
             uLoad2 = instaloader.Profile.from_username(s.context, uName)
@@ -118,14 +122,69 @@ def firstRun():  # This is to fetch data from the tarAcc
             csvContent = [uName, uCon1, uCon2]
             writer.writerow(csvContent)
             i += 1
-            if (i == 15):
+            if (i == 10):
                 csvFile.flush()
-                i = 0
-                print("flush")
+                count += 10
+                print("Flushed")
+                if (count == 60):
+                    print("Waiting 15min to avoid \"To many request\"")
+                    time.sleep(900)
+                    count = 0
+                    pause += 1
 
         csvFile.flush()
         csvFile.close()
+    t2 = time.time()
+    total = t2 - t1
+    print("TOTAL RUNTIME Follower Download {}".format(total))
+    print("TOTAL RUNTIME Follower Download without API Breaks {}".format(total - (pause*15)))
 
+def secondRun():  # This is to fetch data from the tarAcc
+    print("Waiting 15min to avoid \"To many request\"") # Just to make sure nothing happends
+    time.sleep(900)
+
+    t1 = time.time()
+    os.mkdir(r'C:\Users\XXXX\PycharmProjects\instaread2.0\csv-files\followees-files')
+    cPaths = r'C:\Users\XXXX\PycharmProjects\instaread2.0\csv-files\followees-files'
+
+    acc = tarAcc + '-' + "followees" + '.csv'
+    tmpPath = os.path.join(cPaths, acc)
+
+    users = instaloader.Profile.from_username(s.context, tarAcc)  # Load Target profile
+
+    h = ['Account', 'Followers', 'Followees']
+
+    with open(tmpPath, 'w', newline='') as csvFile:
+        writer = csv.writer(csvFile)
+        writer.writerow(h)
+
+        i = 0
+        count = 0
+        pause = 0
+        for f in users.get_followees():
+            uName = str(f.username)
+            uLoad2 = instaloader.Profile.from_username(s.context, uName)
+            uCon1 = str(uLoad2.get_followers().count)
+            uCon2 = str(uLoad2.get_followees().count)
+            csvContent = [uName, uCon1, uCon2]
+            writer.writerow(csvContent)
+            i += 1
+            if (i == 10):
+                csvFile.flush()
+                count += 10
+                print("Flushed")
+                if (count == 60):
+                    print("Waiting 15min to avoid \"To many request\"")
+                    time.sleep(900)
+                    count = 0
+                    pause += 1
+
+        csvFile.flush()
+        csvFile.close()
+    t2 = time.time()
+    total = t2 - t1
+    print("TOTAL RUNTIME Followees Download {}".format(total))
+    print("TOTAL RUNTIME Followees Download without API Breaks {}".format(total - 15 - (pause*15))) # The first 15 is from the 15min wait befor this cycle starts
 
 
 def readFile(fileName):
