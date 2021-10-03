@@ -64,9 +64,9 @@ def menu():
         1. Please respect the creators privacy. Especially when downloading content from private accounts.
            I do not take any responsibility for anything.
 
-        2. If you download a lost of content, the API might start to give timeouts.
+        2. If you download a lot of content, the API might start to give timeouts.
 
-        3. Do not use Instagram while fetching content.         
+        3. DO NOT use Instagram on a other Device while fetching content. The API will throw errors...      
 
         """)
         u = input("Press enter to continue: ")
@@ -92,6 +92,39 @@ def menu():
 
     }
     dict.get(usr_in, default)()
+
+def firstRun():  # This is to fetch data from the tarAcc
+    os.mkdir(r'C:\Users\XXXXX\PycharmProjects\instaread\csv-files')
+    cPaths = r'C:\Users\XXXXX\PycharmProjects\instaread\csv-files'
+    count = 0
+
+    acc = tarAcc + '-' + "followers" + '.csv'
+    tmpPath = os.path.join(cPaths, acc)
+
+    users = instaloader.Profile.from_username(s.context, tarAcc)  # Load Target profile
+
+    h = ['Account', 'Followers', 'Followees']
+
+    with open(tmpPath, 'w', newline='') as csvFile:
+        writer = csv.writer(csvFile)
+        writer.writerow(h)
+
+        i = 0
+        for f in users.get_followers():
+            uName = str(f.username)
+            uLoad2 = instaloader.Profile.from_username(s.context, uName)
+            uCon1 = str(uLoad2.get_followers().count)
+            uCon2 = str(uLoad2.get_followees().count)
+            csvContent = [uName, uCon1, uCon2]
+            writer.writerow(csvContent)
+            i += 1
+            if (i == 15):
+                csvFile.flush()
+                i = 0
+                print("flush")
+
+        csvFile.flush()
+        csvFile.close()
 
 
 
