@@ -1,3 +1,4 @@
+# 23.04.22 its not that i dont have enough time, its just that im not efficient enough
 import instaloader
 import csv
 import os
