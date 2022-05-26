@@ -2,6 +2,8 @@ DISCLAIMER: These scripts are for educational purpose only! Use at your own risk
 
 # Search for someone
 
+NOTE: I am currently not in active developement of this script due to lack of time however the download Followers / Followees works and can be used. The "Plan" mentioned below will probably be developed in like 40 years when im retired... sorry :)
+
 ## Work in Progress
 
 This script will (if you desire to) grab your followers and/or followees and search all of their followers and followees accountnames for a string that you define. 
@@ -18,4 +20,6 @@ Plan:
 
 I just had the crazy idea to combine it to create a chart wich will visually show who follows who.
 (Kind of like https://github.com/KiranGershenfeld/VisualizingTwitchCommunities did)
-Ill defenetly do that since its less complicated than I expected... still its gonna need a lot of time :)
+Ill defenetly do that (in a simpler way)... still its gonna need a lot of time :)
+
+- Greenwave
