@@ -22,4 +22,4 @@ I just had the crazy idea to combine it to create a chart wich will visually sho
 (Kind of like https://github.com/KiranGershenfeld/VisualizingTwitchCommunities did)
 Ill defenetly do that (in a simpler way)... still its gonna need a lot of time :)
 
-- Greenwave
+~ Greenwave
