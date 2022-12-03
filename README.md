@@ -1,5 +1,9 @@
 DISCLAIMER: These scripts are for educational purpose only! Use at your own risk, I take no responsibility for anything or anyone! 
 
+
+*UPDATE December 2022:* Sorry don't expect much here anymore. I just don't have enough time + i kinda got shadowbanned by Meta because it always auto logs me out after just few requests (probably because I sent too many requests in the past)
+
+
 # Search for someone
 
 NOTE: I am currently not in active developement of this script due to lack of time however the download Followers / Followees works and can be used. The "Plan" mentioned below will probably be developed in like 40 years when im retired... sorry :)
