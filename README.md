@@ -1,5 +1,6 @@
 DISCLAIMER: These scripts are for educational purpose only! Use at your own risk, I take no responsibility for anything or anyone! 
 
+*UPDATE June 2023:* The Projects is unfortunatly dead. Meta changed some backend stuff which causes instaloader to fail while trying to fetch data because its tryes to fech a non avaiavle file. Also I get logged out after few requests. Since I dont wanna lose my insta accounts imma stop right here. sorry
 
 *UPDATE December 2022:* Sorry don't expect much here anymore. I just don't have enough time + i kinda got shadowbanned by Meta because it always auto logs me out after just few requests (probably because I sent too many requests in the past)
 
